@@ -8,6 +8,7 @@ require (
 	github.com/chromedp/cdproto v0.0.0-20230208104036-c3c870aa4771 // indirect
 	github.com/chromedp/chromedp v0.8.7 // indirect
 	github.com/chromedp/sysutil v1.0.0 // indirect
+	github.com/dchest/uniuri v1.2.0 // indirect
 	github.com/dreygur/webdriver v0.1.1 // indirect
 	github.com/go-chi/chi/v5 v5.0.8 // indirect
 	github.com/go-chi/render v1.0.2 // indirect

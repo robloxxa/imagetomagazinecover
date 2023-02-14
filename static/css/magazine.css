@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --origwidth: calc(var(--origheight)*0.70665083135);
+    --origheight: 842px;
+
+    --width: var(--origwidth);
+    --height: var(--origheight);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: var(--width);
+    height: var(--height);
+    overflow: hidden;
+    font-family: 'Inter';
+    font-style: normal;
+}
+
+.main {
+    width: var(--width);
+    height: var(--height);
+    position: relative;
+    overflow: hidden;
+}
+.main > * {
+    position: absolute;
+}
+
+.main > span {
+    color: #FFFFFF;
+}
+
+.main_image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.logo {
+    width: 578px;
+    height: 149px;
+    left: 8px;
+    top: 16px;
+}
+
+.logo_O {
+    width: 122px;
+    height: 148px;
+    left: 115px;
+    top: 16px;
+}
+
+.barcode {
+    width: 41px;
+    height: 136px;
+    bottom: 0;
+}
+
+.year_edition {
+    position: absolute;
+    width: 41px;
+    height: 24px;
+    left: 12px;
+    top: 164px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+
+    color: #FFFFFF;
+    transform-origin: left top;
+    transform: rotate(-90deg);
+
+}
+
+.header1 {
+    width: 128px;
+    height: 57px;
+    left: 445px;
+    top: 241px;
+
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+
+    text-align: left;
+    vertical-align: top;
+}
+
+.header2 {
+    width: 110px;
+    height: 48px;
+    left: 14px;
+    top: 373px;
+
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.header3 {
+    width: 132px;
+    height: 76px;
+    left: 445px;
+    top: 644px;
+
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.qualities {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+#qualities_0 {
+    overflow: hidden;
+    width: 204px;
+    height: 168px;
+    left: 14px;
+    top: 181px;
+
+    font-weight: 800;
+    font-size: 35px;
+    line-height: 42px;
+
+    text-align: left;
+    text-wrap: avoid;
+
+    color: white;
+}
+
+#qualities_1 {
+    width: 359px;
+    height: 108px;
+    left: 218px;
+    top: 498px;
+
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 36px;
+
+    text-align: right;
+    color: #FFFFFF;
+}

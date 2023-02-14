@@ -2,13 +2,15 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 )
 
 type TelegramGetFileRequest struct {
-	Ok     bool         `json:"ok"`
-	Result TelegramFile `json:"result"`
+	Ok          bool         `json:"ok"`
+	Description string       `json:"description,omitempty"`
+	Result      TelegramFile `json:"result,omitempty"`
 }
 
 type TelegramFile struct {
@@ -20,16 +22,16 @@ type TelegramFile struct {
 
 var client = &http.Client{}
 
-func getFileURL(fileID string) string {
-	return fmt.Sprintf("https://api.telegram.org/bot%s/getFile?file_id=%s", botToken, fileID)
+func formatGetFileUrl(r MagazineRequest) string {
+	return fmt.Sprintf("https://api.telegram.org/bot%s/getFile?file_id=%s", r.Token, r.FileId)
 }
 
-func getFileLinkURL(filePath string) string {
-	return fmt.Sprintf("https://api.telegram.org/file/bot%s/%s", botToken, filePath)
+func formatTelegramDownloadLink(r MagazineRequest, filePath string) string {
+	return fmt.Sprintf("https://api.telegram.org/file/bot%s/%s", r.Token, filePath)
 }
 
-func requestFilePath(fileID string) (string, error) {
-	r, err := client.Get(getFileURL(fileID))
+func requestFilePath(mreq MagazineRequest) (string, error) {
+	r, err := client.Get(formatGetFileUrl(mreq))
 	if err != nil {
 		return "", err
 	}
@@ -38,14 +40,18 @@ func requestFilePath(fileID string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	if !file.Ok {
+		return "", errors.New(file.Description)
+	}
 	defer r.Body.Close()
+
 	return file.Result.FilePath, nil
 }
 
-func getLinkToPhoto(fileID string) (string, error) {
-	path, err := requestFilePath(fileID)
+func getLinkToPhoto(r MagazineRequest) (string, error) {
+	path, err := requestFilePath(r)
 	if err != nil {
 		return "", err
 	}
-	return getFileLinkURL(path), nil
+	return formatTelegramDownloadLink(r, path), nil
 }
