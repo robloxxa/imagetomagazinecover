@@ -30,6 +30,9 @@ func setupRoutes() http.Handler {
 	r.Use(middleware.Recoverer)
 	fs := http.FileServer(http.Dir("static"))
 	r.Handle("/static/*", http.StripPrefix("/static/", fs))
+	r.Get("/", func(writer http.ResponseWriter, request *http.Request) {
+		writer.Write([]byte("123"))
+	})
 
 	r.HandleFunc("/debug/pprof/", pprof.Index)
 	r.HandleFunc("/debug/pprof/cmdline", pprof.Cmdline)

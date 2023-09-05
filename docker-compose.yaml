@@ -1,0 +1,11 @@
+
+services:
+  web:
+    environment:
+      MAX_WORKERS: 40
+      PORT: 9000
+    build: .
+    ports:
+      - "9000:9000"
+    expose:
+      - 9000
