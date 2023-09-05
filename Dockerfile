@@ -19,5 +19,5 @@ RUN apt install dumb-init
 
 ENTRYPOINT ["dumb-init", "--"]
 
-CMD [ "/kachenokmagazinebot", "-PORT $PORT", "-MAX_WORKERS ${MAX_WORKERS}" ]
+CMD [ "/kachenokmagazinebot" ]
 
