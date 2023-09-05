@@ -3,9 +3,9 @@ services:
   web:
     environment:
       MAX_WORKERS: 40
-      PORT: 9000
+      PORT: 8005
     build: .
     ports:
-      - "9000:9000"
+      - "8005:8005"
     expose:
-      - 9000
+      - 8005
