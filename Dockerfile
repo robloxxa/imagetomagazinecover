@@ -12,6 +12,8 @@ COPY --from=build /kachenokmagazinebot /kachenokmagazinebot
 
 COPY static/ /static/
 
+RUN mkdir -p /static/covers
+
 RUN apt update
 RUN apt install dumb-init
 
