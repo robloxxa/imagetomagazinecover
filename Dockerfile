@@ -1,10 +1,19 @@
-FROM golang:1.20-alpine3.17 AS build
-
-WORKDIR /src
-COPY go.* .
+FROM golang:1.21.0-alpine3.18 as build
+WORKDIR /app
+COPY go.mod go.sum ./
+COPY *.go .
 RUN go mod download
-COPY . .
-RUN CGO_ENABLED=0 go build -o /out/marymagazinebot .
+RUN CGO_ENABLED=0 GOOS=linux go build -o /kachenokmagazinebot
 
-FROM alpine:3.17.2
-COPY -- from=build /marymagazinebot /marymagazinebot
+FROM chromedp/headless-shell:latest
+
+COPY --from=build /kachenokmagazinebot /kachenokmagazinebot
+COPY static/ /static/
+
+RUN apt update
+RUN apt install dumb-init
+
+ENTRYPOINT ["dumb-init", "--"]
+
+CMD [ "/kachenokmagazinebot", "-PORT $PORT", "-MAX_WORKERS ${MAX_WORKERS}" ]
+

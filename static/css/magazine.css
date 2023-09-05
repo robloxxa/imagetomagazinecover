@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
-    --origwidth: calc(var(--origheight)*0.70665083135);
-    --origheight: 842px;
-
-    --width: var(--origwidth);
-    --height: var(--origheight);
+    --mu: calc(var(--height)/842);
+    --width: calc(var(--height)*0.70665083135);
+    --height: 100vh;
 }
 
 html, body {
@@ -39,36 +37,36 @@ html, body {
 }
 
 .logo {
-    width: 578px;
-    height: 149px;
-    left: 8px;
-    top: 16px;
+    width: calc(578*var(--mu));
+    height: calc(149*var(--mu));
+    left: calc(8*var(--mu));
+    top: calc(16*var(--mu));
 }
 
 .logo_O {
-    width: 122px;
-    height: 148px;
-    left: 115px;
-    top: 16px;
+    width: calc(122*var(--mu));
+    height: calc(148*var(--mu));
+    left: calc(115*var(--mu));
+    top: calc(16*var(--mu));
 }
 
 .barcode {
-    width: 41px;
-    height: 136px;
+    width: calc(41*var(--mu));
+    height: calc(136*var(--mu));
     bottom: 0;
 }
 
 .year_edition {
     position: absolute;
-    width: 41px;
-    height: 24px;
-    left: 12px;
-    top: 164px;
+    width: calc(41*var(--mu));
+    height: calc(24*var(--mu));
+    left: calc(12*var(--mu));
+    top: calc(164*var(--mu));
 
     font-style: normal;
     font-weight: 400;
-    font-size: 10px;
-    line-height: 12px;
+    font-size: calc(10*var(--mu));
+    line-height: calc(12*var(--mu));
 
     color: #FFFFFF;
     transform-origin: left top;
@@ -77,57 +75,56 @@ html, body {
 }
 
 .header1 {
-    width: 128px;
-    height: 57px;
-    left: 445px;
-    top: 241px;
+    width: calc(128*var(--mu));
+    height: calc(57*var(--mu));
+    left: calc(445*var(--mu));
+    top: calc(241*var(--mu));
 
     font-style: normal;
     font-weight: 300;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: calc(16*var(--mu));
+    line-height: calc(19*var(--mu));
 
     text-align: left;
     vertical-align: top;
 }
 
 .header2 {
-    width: 110px;
-    height: 48px;
-    left: 14px;
-    top: 373px;
+    width: calc(110*var(--mu));
+    height: calc(48*var(--mu));
+    left: calc(14*var(--mu));
+    top: calc(373*var(--mu));
 
     font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: calc(20*var(--mu));
+    line-height: calc(24*var(--mu));
 }
 
 .header3 {
-    width: 132px;
-    height: 76px;
-    left: 445px;
-    top: 644px;
+    width: calc(132*var(--mu));
+    height: calc(76*var(--mu));
+    left: calc(445*var(--mu));
+    top: calc(644*var(--mu));
 
     font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: calc(16*var(--mu));
+    line-height: calc(19*var(--mu));
 }
 
 .qualities {
-    overflow-wrap: break-word;
-    word-break: break-word;
+    white-space: pre-wrap;
 }
 
 #qualities_0 {
     overflow: hidden;
-    width: 204px;
-    height: 168px;
-    left: 14px;
-    top: 181px;
+    width: calc(230*var(--mu));
+    height: calc(168*var(--mu));
+    left: calc(14*var(--mu));
+    top: calc(181*var(--mu));
 
     font-weight: 800;
-    font-size: 35px;
-    line-height: 42px;
+    font-size: calc(35*var(--mu));
+    line-height: calc(42*var(--mu));
 
     text-align: left;
     text-wrap: avoid;
@@ -136,14 +133,14 @@ html, body {
 }
 
 #qualities_1 {
-    width: 359px;
-    height: 108px;
-    left: 218px;
-    top: 498px;
+    width: calc(359*var(--mu));
+    height: calc(108*var(--mu));
+    left: calc(218*var(--mu));
+    top: calc(498*var(--mu));
 
     font-weight: 800;
-    font-size: 30px;
-    line-height: 36px;
+    font-size: calc(30*var(--mu));
+    line-height: calc(36*var(--mu));
 
     text-align: right;
     color: #FFFFFF;

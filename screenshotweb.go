@@ -10,6 +10,7 @@ import (
 	"net/url"
 	"os"
 	"strconv"
+	"time"
 )
 
 type ScreenshotJob struct {
@@ -141,8 +142,9 @@ func makeScreenshot(ctx context.Context, job ScreenshotJob) (imageUrl string, er
 
 func fullScreenshot(urlstr string, quality int, res *[]byte) chromedp.Tasks {
 	return chromedp.Tasks{
+		chromedp.EmulateViewport(VIEWPORT_WIDTH, VIEWPORT_HEIGHT),
 		chromedp.Navigate(urlstr),
-		chromedp.EmulateViewport(595, 842),
+		chromedp.Sleep(150 * time.Millisecond),
 		chromedp.FullScreenshot(res, quality),
 	}
 }

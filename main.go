@@ -14,25 +14,32 @@ import (
 )
 
 var (
-	MAX_WORKERS = 0
-	PUBLIC_URL  = ""
-	ADDR        = "localhost"
-	PORT        = "8005"
+	MAX_WORKERS           = 0
+	PUBLIC_URL            = ""
+	ADDR                  = "localhost"
+	PORT                  = "8005"
+	VIEWPORT_WIDTH  int64 = 848
+	VIEWPORT_HEIGHT int64 = 1200
 )
 
 var ScreenshotJobQueue chan ScreenshotJob
 
 func init() {
-	var ok bool
-	var err error
+	var (
+		ok  bool
+		err error
+	)
+	PORT, ok = os.LookupEnv("PORT")
+	if !ok {
+		PORT = "3000"
+	}
 	PUBLIC_URL, ok = os.LookupEnv("PUBLIC_URL")
 	if !ok {
-		PUBLIC_URL = "http://" + ADDR + ":" + PORT
+		PUBLIC_URL = "http://localhost:" + PORT
 	}
+
 	workers, ok := os.LookupEnv("MAX_WORKERS")
-	if !ok {
-		MAX_WORKERS = 5
-	} else {
+	if ok {
 		MAX_WORKERS, err = strconv.Atoi(workers)
 		if err != nil {
 			panic(err)
@@ -48,9 +55,9 @@ func main() {
 	defer cancel()
 	dispatcher.Run(chromeCtx)
 
-	server := &http.Server{Addr: "localhost:" + PORT, Handler: setupRoutes()}
+	server := &http.Server{Addr: ":" + PORT, Handler: setupRoutes()}
 	serverCtx, serverStopCtx := context.WithCancel(context.Background())
-
+	log.Println("client ready! port: " + PORT)
 	// Listen for syscall signals for process to interrupt/quit
 	sig := make(chan os.Signal, 1)
 	signal.Notify(sig, syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
@@ -58,8 +65,8 @@ func main() {
 		<-sig
 
 		// Shutdown signal with grace period of 30 seconds
-		shutdownCtx, _ := context.WithTimeout(serverCtx, 30*time.Second)
-
+		shutdownCtx, cancel := context.WithTimeout(serverCtx, 30*time.Second)
+		defer cancel()
 		go func() {
 			<-shutdownCtx.Done()
 			if shutdownCtx.Err() == context.DeadlineExceeded {
