@@ -7,6 +7,8 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /kachenokmagazinebot
 
 FROM chromedp/headless-shell:latest
 
+COPY ca-bundle.crt /etc/ssl/certs/ca-bundle.crt
+COPY ca-bundle.trust.crt /etc/ssl/certs/ca-bundle.trust.crt
 COPY --from=build /kachenokmagazinebot /kachenokmagazinebot
 COPY static/ /static/
 
