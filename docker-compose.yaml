@@ -4,6 +4,7 @@ services:
     environment:
       MAX_WORKERS: 40
       PORT: 8005
+      PUBLIC_URL: https://mary.robloxxa.ru
     build: .
     ports:
       - "8005:8005"

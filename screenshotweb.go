@@ -126,6 +126,7 @@ func makeScreenshot(ctx context.Context, job ScreenshotJob) (imageUrl string, er
 
 	file, err := os.Create("./static/images/covers/" + s + ".png")
 	if err != nil {
+		panic(err)
 		return
 	}
 

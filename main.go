@@ -35,7 +35,7 @@ func init() {
 	}
 	PUBLIC_URL, ok = os.LookupEnv("PUBLIC_URL")
 	if !ok {
-		PUBLIC_URL = "http://localhost:" + PORT
+		PUBLIC_URL = "http://mary.robloxxa.ru:"
 	}
 
 	workers, ok := os.LookupEnv("MAX_WORKERS")
@@ -57,7 +57,7 @@ func main() {
 
 	server := &http.Server{Addr: ":" + PORT, Handler: setupRoutes()}
 	serverCtx, serverStopCtx := context.WithCancel(context.Background())
-	log.Println("client ready! port: " + PORT)
+	log.Printf("client ready!\nPort: %s\nWorkers: %d\nPublic url: %s", PORT, MAX_WORKERS, PUBLIC_URL)
 	// Listen for syscall signals for process to interrupt/quit
 	sig := make(chan os.Signal, 1)
 	signal.Notify(sig, syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
